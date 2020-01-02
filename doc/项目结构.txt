@@ -1,0 +1,38 @@
+.doc
+    开发思路整理.txt
+    打包运行.txt
+    版本说明.txt
+    项目结构.txt
+src
+    main
+        java
+            cn.com.bonc
+        resources
+            connect.properties                      保存kafka、flink、redis、mysql等连接和配置信息，所有项目用到的配置信息都配置在该配置文件中
+            logback.xml                             log日志使用
+        scala
+            cn.com.bonc
+                connector                       flink连接器包
+                    KafkaConnectSource.scala     flink-kafka-source连接器，根据分区数量开启多线程读取不同分区、不同主题数据
+                    KeyedKafkaSink.scala            将k-v类型数据写入kafka的连接器
+                core  核心包
+                    MainFlink.scala               项目启动主类，包含flink报警数据业务处理算子操作
+                    operation                   核心业务处理操作
+                        RuleJson2Map.scala          实现json类型的规则数据和map表的转换
+                        WarningHandle.java          实现报警数据业务处理逻辑核心代码，使用到fastJson对json字符串的处理，使用java代码编写
+                entry                       实体类包
+                    result                      处理结果实体类包
+                        HandleResult                报警数据处理结果总类
+                        TimeWarn                    处理完的时长报警数据存储实体类
+                        ValueWarn                   处理完的值报警数据存储实体类
+                        WarningData                 处理完的报警数据存储实体类
+                    rule                        规则数据实体类包
+                        rule                        规则存储总类
+                        Valuerule                   值报警判断信息存储实体类
+                        Timerule                    时长报警判断信息存储实体类
+                utils  工具包
+                    JedisUtils.scala                redis操作工具类
+                    MysqlUtils.scala                mysql操作工具类
+                    PropertiesUtils.scala           配置文件操作工具类
+                    SerializeUtils.scala            序列化操作工具类
+                    StringUtils.scala               字符串处理工具类

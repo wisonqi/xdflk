@@ -1,0 +1,6 @@
+1. 打包
+    1. 直接使用idea管理的maven中的package进行打包。
+2. 运行
+    1. 修改connect.properties文件中的内容，并通过jar uf xingda.jar connect.properties命令将新配置文件更新到jar包内。
+    2. 启动
+        主类信息：cn.com.bonc.core.WarningMain
